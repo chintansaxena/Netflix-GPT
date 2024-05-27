@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { BG_IMG_URL, USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
     const [isSignInForm, setisSignInForm] = useState(true);
@@ -35,7 +36,7 @@ const Login = () => {
                     const user = userCredential.user;
                     updateProfile(user, {
                         displayName: name.current.value,
-                        photoURL: "https://occ-0-4409-3646.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABRUgleswgt7gwJsXbTfUdpgyuHuLqPuwKMpsmqqC9fcFJ5xQicSiPpEHyul5okHnMnFFOBMFK1iApRLYZUKe06X421iVa0ce6mnA.png?r=1d8"
+                        photoURL: USER_AVATAR
                     }).then(() => {
                         // Profile updated!
                         const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -80,7 +81,7 @@ const Login = () => {
             <div className='absolute brightness-50'>
                 <img
                     alt='background_image'
-                    src='https://user-images.githubusercontent.com/33485020/108069438-5ee79d80-7089-11eb-8264-08fdda7e0d11.jpg'
+                    src={BG_IMG_URL}
                 />
             </div>
             <form
