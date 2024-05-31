@@ -5,16 +5,19 @@ import { BG_IMG_URL } from '../utils/constants'
 
 const GPTSearch = () => {
     return (
-        <div>
-            <div className='absolute brightness-50 -z-10'>
+        <>
+            <div className='fixed brightness-50 -z-10'>
                 <img
+                    className='h-screen object-cover md:h-auto'
                     alt='background_image'
                     src={BG_IMG_URL}
                 />
             </div>
-            <GPTSearchBar />
-            <GPTMovieSuggestions />
-        </div>
+            <div className=''>
+                <GPTSearchBar />
+                <GPTMovieSuggestions />
+            </div>
+        </>
     )
 }
 
