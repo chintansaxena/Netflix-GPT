@@ -22,10 +22,11 @@ const GPTSearchBar = () => {
 
     const handleGPTSearchClick = async () => {
         console.log(searchText.current.value);
+        //Make API call to GPT API and get movie suggestions
 
-        const GPTQuery = "Act as a movie recommendation service and suggest movies based on the query" +
+        const GPTQuery = "Act as a movie recommendation service and suggest movies based on the query : " +
             searchText.current.value +
-            ". only give me names of 8 movies, comma separatedlike the example result given ahead. Example result: Border, Gadar, Welcome, Up, Deadpool, Free Guy, King Kong, Thor"
+            ". only give me names of 5 movies, comma separated like the example result given ahead. Example result: Up, Deadpool, Free Guy, King Kong, Thor"
 
         const GPTResults = await openai.chat.completions.create({
             messages: [{ role: 'user', content: GPTQuery }],
@@ -40,7 +41,7 @@ const GPTSearchBar = () => {
 
         const GPTMovies = GPTResults.choices?.[0]?.message?.content.split(",");
 
-        const promiseArray = GPTMovies.map(movie => searchMovieTMDB());
+        const promiseArray = GPTMovies.map((movie) => searchMovieTMDB(movie));
 
         const TMDBResults = await Promise.all(promiseArray);
 

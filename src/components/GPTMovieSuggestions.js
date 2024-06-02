@@ -18,7 +18,7 @@ const GPTMovieSuggestions = () => {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default GPTMovieSuggestions;

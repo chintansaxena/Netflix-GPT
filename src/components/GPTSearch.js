@@ -13,12 +13,12 @@ const GPTSearch = () => {
                     src={BG_IMG_URL}
                 />
             </div>
-            <div className=''>
+            <div>
                 <GPTSearchBar />
                 <GPTMovieSuggestions />
             </div>
         </>
-    )
-}
+    );
+};
 
 export default GPTSearch
