@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { validateFormData } from '../utils/validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, getAuth, signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
@@ -15,6 +15,33 @@ const Login = () => {
     const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
+
+    const handleGuestLogin = () => {
+
+        const auth = getAuth();
+        signInAnonymously(auth)
+            .then(() => {
+                // Signed in..
+            })
+            .catch((error) => {
+                // const errorCode = error.code;
+                // const errorMessage = error.message;
+                setErrorMessage(error.message);
+                // ...
+            });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/auth.user
+                const uid = user.uid;
+                // ...
+            } else {
+                // User is signed out
+                // ...
+            }
+        });
+    }
 
     const handleButtonClick = () => {
         //Validate the form data
@@ -110,6 +137,9 @@ const Login = () => {
                 <button className='p-2 my-1 rounded-sm bg-red-700 w-full' onClick={handleButtonClick}>
                     {isSignInForm ? "Sign In" : "Sign Up"}
                 </button>
+                <button className='p-2 my-2 rounded-sm bg-red-700 w-full font-bold' onClick={handleGuestLogin}>
+                    Guest Sign-in
+                </button>
                 {isSignInForm && <p className='text-center text-sm m-1 p-1 cursor-pointer'>Forgot password?</p>}
                 <div className='flex'>
                     {isSignInForm && (<input
@@ -120,7 +150,7 @@ const Login = () => {
                     )}
                     {isSignInForm && <span className='text-sm m-1'> Remember me </span>}
                 </div>
-                <p className='py-4 text-sm cursor-pointer'
+                <p className='py-4 text-sm cursor-pointer font-bold'
                     onClick={toggleSignInForm}>
                     {isSignInForm ? "New to Netflix? Sign up now." : "Already a user? Sign in."}
                 </p>
