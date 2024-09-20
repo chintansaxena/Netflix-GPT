@@ -26,7 +26,7 @@ Live site hosted here - https://myflix-gpt.netlify.app/
 
 Contributions are welcome! Please feel free to submit pull requests or report issues on the GitHub repository.
 
-#License - 
+# License - 
 
 This project is licensed under the MIT License.   
 
