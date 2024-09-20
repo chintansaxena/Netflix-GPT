@@ -22,5 +22,13 @@ NetflixGPT is a web application that provides users with personalized movie reco
 
 Live site hosted here - https://myflix-gpt.netlify.app/
 
+# Contributing - 
+
+Contributions are welcome! Please feel free to submit pull requests or report issues on the GitHub repository.
+
+#License - 
+
+This project is licensed under the MIT License.   
+
 
 
